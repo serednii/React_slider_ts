@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const urlMockup = 'https://6606a11ebe53febb857e51e7.mockapi.io/todos';
 const urlJsonPlaceHolder = 'https://jsonplaceholder.typicode.com/todos';
-const url = urlMockup;
+const url = urlJsonPlaceHolder;
 
 
 export const fetchTodos = createAsyncThunk(
@@ -27,22 +27,11 @@ export const deleteTodo = createAsyncThunk(
         console.log(id)
         try {
             const response = await fetch(`${url}/${id}`, {
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
-                redirect: 'follow', // manual, *follow, error
-                referrerPolicy: 'no-referrer', // no-referrer, *client
-                headers: {
-                    "Access-Control-Allow-Headers": "Content-Type",
-                    "Access-Control-Allow-Origin": "*",
-                    'Content-Type': 'application/json',
-                    "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PATCH,DELETE"
-                },
                 method: 'DELETE',
             })
-            // if (!response.ok) {
-            //     throw new Error('Cant\'t delete task. Server error');
-            // }
+            if (!response.ok) {
+                throw new Error('Cant\'t delete task. Server error');
+            }
             dispatch(removeTodo({ id }))
             const data = await response.json()
             console.log(data)
@@ -58,7 +47,6 @@ export const toggleStatus = createAsyncThunk(
         const todo = getState().todos.todos.find(todo => todo.id === id)
         try {
             const response = await fetch(`${url}/${id}`, {
-                mode: 'no-cors',
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +79,6 @@ export const addNewTodo = createAsyncThunk(
                 completed: false
             }
             const response = await fetch(url, {
-                mode: 'no-cors',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
