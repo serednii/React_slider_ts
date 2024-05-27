@@ -15,8 +15,6 @@ const  App: React.FC = () => {
     'http://smm.zzz.com.ua/pizza/8.jpg',
   ];
 
-
-
   return (
     <div className='App'>
       <Slider images={images}></Slider>

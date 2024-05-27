@@ -23,9 +23,9 @@ const Slider: React.FC<SliderProp> = ({images})=>{
 
     return(
         <div className="slider">
-            <button onClick={prevSlide} className="slider-button">Prev</button>
+            <button onClick={prevSlide} className="slider-button text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Prev</button>
             <img src={images[currentIndex]} alt="slide" className="slider-image" />
-            <button onClick={nextSlide} className="slider-button">Next</button>
+            <button onClick={nextSlide} className="slider-button text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Next</button>
 
         </div>
     )
