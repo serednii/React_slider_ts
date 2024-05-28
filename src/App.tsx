@@ -1,23 +1,18 @@
 
-import Slider from './slider/Slider';
+import ScrollComponent from './scrollComponent/ScrollComponent';
 import './App.css';
+import AddScrollComponent from './components/addScrollComponent/AddScrollComponent';
 
 
 const  App: React.FC = () => {
-  const images = [
-    'http://smm.zzz.com.ua/pizza/1.jpg',
-    'http://smm.zzz.com.ua/pizza/2.jpg',
-    'http://smm.zzz.com.ua/pizza/3.jpg',
-    'http://smm.zzz.com.ua/pizza/4.jpg',
-    'http://smm.zzz.com.ua/pizza/5.jpg',
-    'http://smm.zzz.com.ua/pizza/6.jpg',
-    'http://smm.zzz.com.ua/pizza/7.jpg',
-    'http://smm.zzz.com.ua/pizza/8.jpg',
-  ];
+
 
   return (
-    <div className='App'>
-      <Slider images={images}></Slider>
+    <div className='App p-5'>
+      <div className='m-auto w-4/5'>  
+      <AddScrollComponent/>
+      <ScrollComponent/>
+      </div>
     </div>
   );
 }
