@@ -1,27 +1,29 @@
 
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addScroll, subScroll, setScroll} from '../../store/scrollSlice';
+import { useAppDispatch } from '../../store';
+import { fetchChangeScroll, addScroll, subScroll, setScroll} from '../../store/scrollSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index'
+
+
 
 interface IControlProps {
     index: number
 }
 
 const Control: React.FC<IControlProps> = ({index})=> {
-
+console.log('control')
     const progressList = useSelector((state:RootState) => state.scroll.progressList);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-    const handleAddScroll = () => dispatch(addScroll(index))
-    const handleSubScroll = () => dispatch(subScroll(index))
+    const handleAddScroll = () => dispatch(fetchChangeScroll({index, value: 'plus'}))
+    const handleSubScroll = () => dispatch(fetchChangeScroll({index, value: 'minus'}))
 
     const handleInputProgress = (e: React.ChangeEvent<HTMLInputElement>)=>{
         const value = e.target.value;
         //Only numbers and a non-empty string
          if ((!value || !/^\d*$/.test(value) ) ) {
-            dispatch(setScroll([index, 0]))
+            dispatch(fetchChangeScroll({index, value: 0}))
             return;
          }
 
@@ -29,8 +31,7 @@ const Control: React.FC<IControlProps> = ({index})=> {
         //The range of entered numbers is from 0 to 100
         if(IntValue < 0) IntValue = 0
         else if(IntValue > 100) IntValue = 100
-        
-        dispatch(setScroll([index, IntValue]))
+        dispatch(fetchChangeScroll({index, value: IntValue}))
     }
 
     return (
@@ -41,7 +42,7 @@ const Control: React.FC<IControlProps> = ({index})=> {
         <div>
             <label htmlFor="hs-trailing-button-add-on" className="sr-only">Label</label>
             <div className="flex rounded-lg shadow-sm">
-            <input type="text" value={progressList[index]} onChange={(e)=>handleInputProgress(e)} id="hs-trailing-button-add-on" name="hs-trailing-button-add-on" className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
+            <input type="text" value={progressList[index].value} onChange={(e)=>handleInputProgress(e)} id="hs-trailing-button-add-on" name="hs-trailing-button-add-on" className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
             </div>
         </div>
     </div>
