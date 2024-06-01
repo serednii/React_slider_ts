@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from '../../store';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/index'
+import { selectorProgressList } from '../../store/selector'
 
 import {fetchDeleteScroll} from '../../store/scrollSlice'
 interface IIconButtonProps {
@@ -9,7 +9,7 @@ interface IIconButtonProps {
 }
 
 const IconButton: React.FC<IIconButtonProps> = ({index}) => {
-  const progressList = useSelector((state:RootState) => state.scroll.progressList);
+  const progressList = useSelector(selectorProgressList);
 console.log('')
     const dispatch = useAppDispatch();
 

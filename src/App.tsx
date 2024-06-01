@@ -3,9 +3,8 @@ import ScrollComponent from './scrollComponent/ScrollComponent';
 import './App.css';
 import AddScrollComponent from './components/addScrollComponent/AddScrollComponent';
 import { useEffect } from 'react';
-import { RootState } from './store';
 import { fetchScrollBar } from './store/scrollSlice';
-import { useAppDispatch, useAppSelector } from './store/index'; // 
+import { useAppDispatch } from './store/index'; // 
 const  App: React.FC = () => {
 console.log('APP')
 const dispatch = useAppDispatch();

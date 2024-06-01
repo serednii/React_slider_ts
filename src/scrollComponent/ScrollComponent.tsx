@@ -1,16 +1,13 @@
 import ScrollBar from "./scrollbar/ScrollBar";
 import Control from "./control/Control";
-// import { useSelector } from "react-redux/es/hooks/useSelector";
-import { RootState } from "../store";
+import { selectorProgressList } from "../store/selector";
 import IconButton from "../components/otherComponents/IconButton";
 import {ProgressItems} from './../store/scrollSlice';
-import { useDispatch, useSelector } from "react-redux";
-// import { removeComponent} from '../store/scrollSlice';
-// const dispatch = useDispatch();
+import { useSelector } from "react-redux";
 
 const ScrollComponent: React.FC = () => {
    
-    const progressList = useSelector((state:RootState) => state.scroll.progressList)
+    const progressList = useSelector(selectorProgressList)
     return (
         <ul>
             {progressList.map((obj:ProgressItems, index: number) => (

@@ -1,12 +1,12 @@
 
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/index'
+import { selectorProgressList } from '../../store/selector'
 interface IScrollBarProps {
   index: number;
 }
 const ScrollBar: React.FC<IScrollBarProps> = ({index}) => {
-  const progressList = useSelector((state:RootState) => state.scroll.progressList);
+  const progressList = useSelector(selectorProgressList);
   console.log('scrollbar')
     return (
       <div className="w-4/5 h-6 bg-gray-200 rounded-full dark:bg-gray-700 mb-4">

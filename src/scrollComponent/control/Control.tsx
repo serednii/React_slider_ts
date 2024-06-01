@@ -3,7 +3,7 @@ import React from "react";
 import { useAppDispatch } from '../../store';
 import { fetchChangeScroll, addScroll, subScroll, setScroll} from '../../store/scrollSlice';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/index'
+import { selectorProgressList } from '../../store/selector';
 
 
 
@@ -13,7 +13,7 @@ interface IControlProps {
 
 const Control: React.FC<IControlProps> = ({index})=> {
 console.log('control')
-    const progressList = useSelector((state:RootState) => state.scroll.progressList);
+    const progressList = useSelector(selectorProgressList);
     const dispatch = useAppDispatch();
 
     const handleAddScroll = () => dispatch(fetchChangeScroll({index, value: 'plus'}))
